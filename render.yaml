@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: wind
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: sh -c "node bot/index.cjs & npm run start"
+    envVars:
+      - key: NEXT_PUBLIC_SITE_NAME
+        value: RiseShop Discord Manager
+      - key: NEXT_PUBLIC_SITE_URL
+        value: https://wind-ab50.onrender.com
+      - key: DISCORD_BOT_TOKEN
+        sync: false
+      - key: DISCORD_CLIENT_ID
+        sync: false
+      - key: DISCORD_GUILD_ID
+        sync: false
+      - key: DISCORD_OWNER_ID
+        sync: false

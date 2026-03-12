@@ -1,0 +1,35 @@
+{
+  "name": "riseshop-discord-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tsc --noEmit",
+    "bot": "node bot/index.cjs",
+    "register": "node bot/register-commands.cjs"
+  },
+  "dependencies": {
+    "@discordjs/voice": "^0.16.1",
+    "axios": "^1.8.4",
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.6.1",
+    "emoji-regex": "^10.4.0",
+    "express": "^4.21.2",
+    "mercadopago": "^1.5.17",
+    "next": "^15.2.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "uuid": "^11.1.0",
+    "wio.db": "^4.0.22",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,43 @@
+{
+    "ConfigGeral": {
+        "Status": "ON",
+        "ColorEmbed": "#2b2d31",
+        "TermosCompra": "Não definido",
+        "MercadoPagoConfig": {
+            "PixToggle": "OFF",
+            "SiteToggle": "OFF",
+            "TimePagament": "20",
+            "TokenAcessMP": ""
+        },
+        "SaldoConfig": {
+            "SaldoStatus": "ON",
+            "Bonus": "10",
+            "ValorMinimo": "10"
+        },
+        "SemiAutoConfig": {
+            "SemiAutoStatus": "ON",
+            "typepix": "",
+            "pix": "",
+            "qrcode": ""
+        },
+        "CashBack": {
+            "ToggleCashBack": "OFF",
+            "Porcentagem": "10"
+        },
+        "StatusBot": {
+            "typestatus": "Online",
+            "ativistatus": "Transmitindo",
+            "textstatus": "ba",
+            "urlstatus": "https://localhost"
+        },
+        "perms": [],
+        "ChannelsConfig": {
+            "ChannelLogAdm": "1480197467046936678",
+            "ChannelLogPublica": "1480197467046936678",
+            "ChangeChannelMod": "1480197467046936678",
+            "ChannelTicket": "1480197467046936678",
+            "ChannelAvaliar": "1480197467046936678",
+            "ChannelSugestao": "1480197467046936678"
+        }
+    }
+}
