@@ -4,16 +4,20 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/render-keepalive.yml"
 
 jobs:
   ping:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Ping Render app
         id: ping
         run: |
-          URL="https://wind-ab50.onrender.com/"
-          STATUS=$(curl -L -s -o /dev/null -w "%{http_code}" "$URL")
+          URL="https://wind-ab50.onrender.com/api/status"
+          STATUS=$(curl -L -sS --max-time 60 -o /dev/null -w "%{http_code}" "$URL")
           echo "Status: $STATUS"
           echo "status=$STATUS" >> "$GITHUB_OUTPUT"
           test "$STATUS" -ge 200 -a "$STATUS" -lt 500

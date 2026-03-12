@@ -6,7 +6,7 @@ export async function GET() {
   const botStatus = await getBotStatus();
   const updatedAtMs = botStatus.updatedAt ? new Date(botStatus.updatedAt).getTime() : 0;
   const botOnline = Boolean(
-    botStatus.online && updatedAtMs && Date.now() - updatedAtMs < 45_000
+    botStatus.online && updatedAtMs && Date.now() - updatedAtMs < 180_000
   );
 
   return NextResponse.json({

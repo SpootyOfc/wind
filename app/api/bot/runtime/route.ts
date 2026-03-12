@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getBotSettings, getBotStatus } from "@/lib/bot-config";
 
-const STALE_AFTER_MS = 45_000;
+const STALE_AFTER_MS = 180_000;
 
 export async function GET() {
   const [settings, status] = await Promise.all([getBotSettings(), getBotStatus()]);
