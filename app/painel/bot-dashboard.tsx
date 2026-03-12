@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 
 type BotSettings = {
   displayName: string;
@@ -39,12 +39,17 @@ export function BotDashboard() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [dirty, setDirty] = useState(false);
+  const dirtyRef = useRef(false);
+
+  useEffect(() => {
+    dirtyRef.current = dirty;
+  }, [dirty]);
 
   async function loadRuntime() {
     const response = await fetch("/api/bot/runtime", { cache: "no-store" });
     const data = (await response.json()) as RuntimeResponse;
     setRuntime(data);
-    if (!dirty) {
+    if (!dirtyRef.current) {
       setSettings(data.settings);
     }
     setLoading(false);
