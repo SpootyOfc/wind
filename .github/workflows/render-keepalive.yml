@@ -1,0 +1,37 @@
+name: Render Keepalive
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render app
+        id: ping
+        run: |
+          URL="https://wind-ab50.onrender.com/"
+          STATUS=$(curl -L -s -o /dev/null -w "%{http_code}" "$URL")
+          echo "Status: $STATUS"
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+          test "$STATUS" -ge 200 -a "$STATUS" -lt 500
+
+      - name: Notify Discord webhook
+        if: always()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.RENDER_KEEPALIVE_WEBHOOK_URL }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            exit 0
+          fi
+
+          STATUS="${{ steps.ping.outputs.status }}"
+          if [ -z "$STATUS" ]; then
+            STATUS="request_failed"
+          fi
+
+          curl -sS -H "Content-Type: application/json" \
+            -d "{\"content\":\"Render keepalive ping: status $STATUS at $(date -u +'%Y-%m-%d %H:%M:%S UTC')\"}" \
+            "$DISCORD_WEBHOOK_URL" > /dev/null
